@@ -1,0 +1,61 @@
+<!-- <input type="text" name="" ng-model="query"/>
+
+<select ng-model="order">
+	<option value="username">Organiser par nom</option>
+	<option value="content">Organiser par contenu</option>
+</select> -->
+
+<ol class="breadcrumb">
+  <li><a href="#/">Articles</a></li>
+  <li>{{post.name}}</li>
+</ol>
+
+
+<div ng-show="!loading"> 
+
+	<ng-tabs>
+		<ng-tab title="Article">
+			<h1>{{post.name}}</h1>
+			<p><img ng-src='{{post.picture}}' alt="{{post.name}}" /></p>
+			<p>{{post.content}}</p>
+		</ng-tab>
+
+		<ng-tab title="{{comments.length}} commentaires">
+			<h3>{{comments.length}} commentaires</h3>
+
+			<div ng-repeat="comment in comments | filter: {content: query} | orderBy: order">
+				<div ng-comment comment="comment"></div>		
+			</div>
+		</ng-tab>
+	</ng-tabs>
+
+
+	
+
+<!-- 	<div class="form-group">
+			<input type="text" class="form-control datepicker" placeholder="username" ng-model="newComment.username">
+		</div> -->
+
+	<!-- <time></time> -->
+
+	<form ng-submit="addComment()">
+		<h3>Ajouter un commentaire</h3>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="username" ng-model="newComment.username">
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="city" ng-model="newComment.city">
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="phone" ng-model="newComment.phone">
+		</div>
+		<div class="form-group">
+			<textarea ng-model="newComment.content" class="form-control"></textarea>
+		</div>
+		<div class="form-group">
+			<input type="submit" class="btn btn-default" value="Envoyer">
+		</div>
+		
+	</form>
+</div>
+
